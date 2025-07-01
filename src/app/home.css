@@ -1,0 +1,292 @@
+body{
+    font-family: "Montserrat", sans-serif;
+    overflow: hidden;
+    background-color: #c7d499;
+}
+
+.hindi{
+    font-family: "Mangal",sans-serif;
+}
+
+.special-message {
+    font-size: 1rem;
+    color: #000000;
+    margin-top: 20px;
+}
+
+/* General icon styling */
+.right-section .form-group label svg {
+    font-size: 1rem; /* Adjust icon size */
+    color: #54473F; /* Primary color for icons */
+    vertical-align: middle; /* Align with text */
+    margin-left: 8px; /* Space between label text and icon */
+}
+
+/* Hover effect for icons */
+.right-section .form-group label svg:hover {
+    color: #54473F; /* Darker shade for hover */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Optional: Align text and icon properly */
+.right-section .form-group label {
+    display: flex;
+    align-items: center;
+    font-size: 1rem; /* Match font size */
+    color: #333; /* Label text color */
+}
+
+/* Icon spacing customization */
+.right-section .form-group label svg {
+    margin-right: 8px; /* Space after icon */
+}
+
+
+.special-message strong {
+    font-weight: bold;
+    color: #000;
+}
+
+.welcome-content {
+    text-align: center;
+    margin-top: 20px;
+    color: #54473F;
+}
+
+.mini-container{
+    background-color: #c7d499;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    width: 100%;
+    height: 80%;
+}
+
+
+
+.right-section input {
+    font-family: 'Montserrat', sans-serif;
+    width: 250px;
+    padding: 2rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group select {
+    padding: 0.7rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 275px;
+    font-family: 'Montserrat', sans-serif;
+    color: #565656;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+/* Outer Container for Split Layout */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto; /* Adjust container height based on content */
+}
+
+/* Left Section: Titles and Image */
+.left-section {
+    flex: 1;
+    text-align: center;
+    margin-right: 2rem;
+}
+
+.image-logo img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+}
+
+.heading h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #54473F;
+    margin-bottom: 0.2rem;
+}
+
+.sub-heading h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #765949;
+    margin-bottom: 0.1rem;
+}
+
+/* Right Section: Form */
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 15px;
+    background-color: #ccd0be;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    max-height: 100%;
+    overflow-y: auto; /* Allow scroll if content is too long */
+}
+
+/* Heading Style inside Form */
+.right-section h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #54473F;
+    margin-bottom: 1rem;
+}
+
+/* Styling for the "only enter the CMS ID" paragraph in the forgot password section inside the form */
+.right-section .sub-heading {
+    color: #5a675a; /* Light gray color for subtle text */
+    font-size: 14px; /* Medium font size */
+    text-align:left; /* Center align the text */
+    
+}
+
+/* Form Group for Inputs */
+.form-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.right-section label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #54473F;
+    margin-right: 1rem;
+    white-space: nowrap;
+}
+
+.home-loading{
+  position: fixed; /* Fixes the position on the page */
+  top: 50%; /* Centers vertically */
+  left: 50%; /* Centers horizontally */
+  transform: translate(-50%, -50%); /* Adjusts for perfect centering */
+  z-index: 9999;
+}
+
+.right-section input {
+    font-family: 'Montserrat', sans-serif;
+    width: 250px;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Focus Effect */
+.right-section input:focus {
+    outline: none;
+    border-color: #f2b157;
+    box-shadow: 0 0 8px #f2b157;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Links Container */
+.links-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.links-container p {
+    font-size: 0.9rem;
+    color: #54473F;
+    cursor: pointer;
+}
+
+.links-container p:hover {
+    text-decoration: underline;
+}
+
+/* Button Styling */
+.right-section button {
+    font-family: 'Montserrat', sans-serif;
+    width: 30%;
+    padding: 0.7rem;
+    background-color: #765949;
+    color: #E9EED9;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body{
+        overflow: auto;
+    }
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-section {
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    .right-section {
+        width: 90%;
+    }
+
+    .right-section input {
+        width: 100%;
+    }
+
+    /* Adjust form button width on small screens */
+    .right-section button {
+        width: 100%;
+        padding: 0.8rem;
+    }
+}

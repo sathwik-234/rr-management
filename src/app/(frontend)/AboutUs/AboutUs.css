@@ -1,0 +1,96 @@
+
+.about-page {
+  background-color: #ccd0be;
+  font-family: "Montserrat", sans-serif;
+  margin: 10px 20px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 8px 10px rgba(84, 71, 63, 0.2);
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.highlight {
+  color: #d2f13a;
+  font-weight: bold;
+}
+
+.mission-section, .team-section, .contact-section {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.mission-section h2, .team-section h2, .contact-section h2 {
+  font-size: 1.8rem;
+  color: #54473F;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.mission-section h2 {
+  margin-top: 10px;
+}
+
+.team-section h2 {
+  margin: 30px 0;
+}
+
+.mission-section p, .contact-section p {
+  font-size: 1rem;
+  color: #252525;
+  line-height: 1.6;
+}
+
+.team-section .team-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.team-member {
+  text-align: center;
+  flex: 1;
+  max-width: 180px;
+}
+
+.team-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-member h3 {
+  font-size: 1.2rem;
+  color: #28221e;
+  margin-top: 10px;
+}
+
+.team-member p {
+  font-size: 1rem;
+  color: #393939;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-member {
+    margin-bottom: 20px;
+  }
+}

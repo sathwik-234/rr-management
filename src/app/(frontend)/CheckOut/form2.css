@@ -1,0 +1,167 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #c7d499;
+}
+
+.checkout-loading {
+  position: fixed; /* Fixes the position on the page */
+  top: 50%; /* Centers vertically */
+  left: 50%; /* Centers horizontally */
+  transform: translate(-50%, -50%); /* Adjusts for perfect centering */
+  z-index: 9999; /* Ensures the loader appears above other content */
+}
+
+.checkout-form-block {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  box-shadow: 0 8px 10px rgba(84, 71, 63, 0.2);
+  background-color: #ccd0be;
+  border-radius: 10px;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.checkout-form {
+  display: flex;
+  width: 90%;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.checkout-form-name {
+  font-size: 2.0rem;
+  font-weight:bold;
+  text-align: center;
+  color: #54473F;
+  padding: 5px 10px;
+  display: inline-block;
+  position: relative;
+  text-decoration: underline;
+  text-decoration-color: #54473F; /* Optional: Matches the text color */
+  text-decoration-thickness: 2px; /* Adjust thickness */
+}
+
+.right-block, .left-block, .feedback-block {
+  flex: 1;
+  margin-right: 150px;
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.feedback-block {
+  width: 100%;
+  margin-right: 20px;
+}
+
+.field-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  width: 120%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #f2b157;
+  box-shadow: 0 0 5px #f2b157;
+    transition: box-shadow 0.3s ease-in-out
+}
+
+.bead {
+  font-size: 10px;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+}
+
+.submitButton {
+  width: 130px;
+  height: 50px;
+  padding: 15px;
+  margin: 10px;
+  margin-right: 50px;
+  background-color: #54473f;
+  color: #e9eed9;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.submitButton:hover {
+  background-color: #f0910c;
+  color: #54473F;
+}
+
+/* Mobile View Adjustments */
+/* Mobile View Adjustments */
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+
+  body {
+    overflow: auto;
+    font-size: 1.1rem; /* Increase base font size for readability */
+  }
+
+  .checkout-form-block {
+    margin-right: 15px;
+    margin-left: 15px;
+    flex-direction: column; /* Stack elements vertically */
+  }
+
+  .checkout-form {
+    width: 100%;
+    padding: 20px;
+    flex-direction: column; /* Ensure form is laid out vertically */
+  }
+
+  .checkout-form-name {
+    font-size: 1.8rem; /* Increase font size */
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px; /* Add more margin for spacing between name and fields */
+  }
+
+  .right-block, .left-block, .feedback-block {
+    flex: 1 1 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .form-input {
+    width: 80%; /* Ensure full width */
+    padding: 15px; /* Increase padding for better tap targets */
+    font-size: 1.1rem; /* Increase font size for better readability */
+    margin-bottom: 20px; /* Add space between inputs */
+  }
+
+  .submitButton {
+    width: 100%; /* Ensure button spans the full width */
+    padding: 18px; /* Increase button height */
+    font-size: 1.4rem; /* Increase font size */
+    align-self: center;
+    margin-top: 20px; /* Add margin on top */
+  }
+
+  .button-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,205 @@
+/* Loading Spinner Centered */
+.slips-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+  
+  /* Main Container */
+  .main-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: 0 8px 10px rgba(84, 71, 63, 0.2);
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+  
+  /* Slips Container */
+  .slips-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  
+  /* Title */
+  .slips-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #54473F;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    text-decoration-color: #54473F;
+    text-decoration-thickness: 2px;
+  }
+
+  /* In your main.css */
+/* Hidden by default */
+.hidden-for-print {
+  display: none;
+}
+
+/* When printing */
+@media print {
+  .hidden-for-print {
+    display: block !important;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin: 3px 0;
+  }
+
+  p {
+    font-size: 12px;
+    margin: 6px 0;
+    text-align: center; /* Center align all paragraphs */
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  hr {
+    display: none;
+  }
+
+  .thank-you {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    font-style: italic;
+  }
+}
+
+
+  
+  /* Content Area */
+  .slips-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Form */
+  .slips-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    background-color: #ccd0be;
+    padding: 30px 0 30px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Each form field */
+  .slip-form-field {
+    display: flex;
+    flex-direction: row; /* Label and Input side by side */
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 80%;
+  }
+  
+  /* Labels */
+  .Name,
+  .cms,
+  .Email,
+  .Date,
+  .Meal{
+    font-weight: bold;
+    font-size: 1rem;
+    width: 30%; /* Label width */
+    color: #54473F;
+  }
+
+  
+/* Button */
+.slips-button {
+    width: 150px;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #54473F;
+    color: #E9EED9;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  /* Inputs */
+  .slips-input {
+    width: 65%; /* Input width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* Input focus effect */
+  .slips-input:focus {
+    outline: none;
+    border-color: #f2b157;
+    box-shadow: 0 0 2px #f2b157;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  /* Mobile View Adjustments */
+  @media (max-width: 768px) {
+    .main-container {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  
+    .slip-form-field {
+      flex-direction: column;
+      width: 90%;
+      align-items: flex-start;
+    }
+  
+    .Name,
+    .cms,
+    .Email,
+    .Date {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  
+    .slips-input {
+      width: 100%;
+    }
+  
+    .slips-title {
+      font-size: 1.5rem;
+    }
+  }
+  

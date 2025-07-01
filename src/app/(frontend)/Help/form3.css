@@ -1,0 +1,225 @@
+body {
+  margin: 10px;
+  min-height: 80vh;
+  font-family: "Montserrat", sans-serif;
+  background-color: #c7d499;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: row;
+  box-shadow: 0 8px 10px rgba(84, 71, 63, 0.2);
+  background-color: #ccd0be;
+  border-radius: 10px;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.form-element {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+}
+
+.form-title {
+  font-size: 2.0rem;
+  font-weight:bold;
+  text-align: center;
+  color: #54473F;
+  padding: 5px 10px;
+  display: inline-block;
+  position: relative;
+  text-decoration: underline;
+  text-decoration-color: #54473F; /* Optional: Matches the text color */
+  text-decoration-thickness: 2px; /* Adjust thickness */
+}
+
+.form-column-right, .form-column-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 50px;
+}
+
+.form-column-right div, .form-column-left div {
+  margin-bottom: 15px;
+}
+
+
+.about-us-loading {
+  position: fixed; /* Fixes the position on the page */
+  top: 50%; /* Centers vertically */
+  left: 50%; /* Centers horizontally */
+  transform: translate(-50%, -50%); /* Adjusts for perfect centering */
+  z-index: 9999; /* Ensures the loader appears above other content */
+}
+
+.help-form-room{
+  width: 40%;
+  height: 4vh;
+  border-radius: 5px;
+  border: none;
+}
+
+.form-column-feedback {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.help-form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.help-form-input {
+  width: 80%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+.special-input {
+  width: 80%;
+  height: 4vh;
+  border-radius: 5px;
+  border: none;
+}
+
+.form-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.submit-button {
+  width: 130px;
+  height: 50px;
+  padding: 15px;
+  margin: 10px;
+  margin-right: 50px;
+  background-color: #54473F;
+  color: #E9EED9;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.submit-button:hover {
+  background-color: #f0910c;
+  color: #54473F;
+}
+
+.textarea-resizable {
+  width: 75%; /* Make textarea take full width */
+  min-height: 100px; /* Minimum height for textarea */
+  padding: 12px; /* Larger padding */
+  font-size: 1rem; /* Adjust font size */
+}
+
+.help-form-input:focus {
+  outline: none;
+  border-color: #f2b157;
+  box-shadow: 0 0 5px #f2b157;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.special-input{
+  font-family: "Montserrat",sans-serif;
+}
+
+.special-input:focus {
+  font-family: "Montserrat",sans-serif;
+  outline: none;
+  border-color: #f2b157;
+  box-shadow: 0 0 5px #f2b157;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.textarea-resizable:focus {
+  outline: none;
+  border-color: #f2b157;
+  box-shadow: 0 0 5px #f2b157;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.help-form-room:focus {
+  outline: none;
+  border-color: #f2b157;
+  box-shadow: 0 0 5px #f2b157;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+
+  body{
+    overflow: auto;
+  }
+
+  .form-container {
+    flex-direction: column;
+    margin-left: 20px;  /* Reduce margin for better spacing */
+    margin-right: 20px; /* Reduce margin for better spacing */
+  }
+
+  .form-element {
+    flex-direction: column; /* Stack form fields vertically */
+    width: 100%; /* Full width */
+    padding: 10px; /* Adjust padding for mobile */
+  }
+
+  .form-title {
+    font-size: 1.5rem; /* Adjust font size for mobile */
+    padding: 5px 10px;
+  }
+
+  .form-column-right, .form-column-left, .form-column-feedback {
+    flex: 1 1 100%; /* Allow blocks to take full width */
+    margin-right: 0; /* Remove margin for mobile */
+    margin-bottom: 20px; /* Space between blocks */
+  }
+
+  .help-form-input {
+    width: 90%; /* Make inputs full width */
+    padding: 12px; /* Larger padding for touch targets */
+    font-size: 1rem; /* Adjust font size for readability */
+  }
+
+  .special-input {
+    width: 100%; /* Make special input take full width */
+  }
+
+  .form-button-container {
+    margin-top: 20px; /* Reduce margin for better spacing */
+    justify-content: center;
+  }
+
+  .submit-button {
+    width: 90%; /* Make submit button full width */
+    padding: 15px;
+    margin-right: 0;
+    font-size: 1.2rem; /* Adjust font size for mobile */
+    align-self: center; /* Center the submit button */
+  }
+
+  .textarea-resizable {
+    width: 85%; /* Make textarea take full width */
+    min-height: 100px; /* Minimum height for textarea */
+    padding: 12px; /* Larger padding */
+    font-size: 1rem; /* Adjust font size */
+  }
+}
