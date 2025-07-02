@@ -11,6 +11,7 @@ function TOForm() {
 
   const formatDate = (date) => {
     if (!date) return "";
+    const d = new Date(date);
     const offset = d.getTimezoneOffset() * 60000; // Offset in milliseconds
     const localDate = new Date(d - offset); // Adjust to local timezone
     return localDate.toISOString().slice(0, 16);
