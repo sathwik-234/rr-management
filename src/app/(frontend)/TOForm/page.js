@@ -11,9 +11,16 @@ function TOForm() {
 
   const formatDate = (date) => {
     if (!date) return "";
+    const offset = d.getTimezoneOffset() * 60000; // Offset in milliseconds
+    const localDate = new Date(d - offset); // Adjust to local timezone
+    return localDate.toISOString().slice(0, 16);
+  };
+
+  const formatDateTime = (date) => {
+    if (!date) return "";
     const d = new Date(date);
     const localDate = new Date(d);
-    return localDate.toISOString().slice(0, 16);
+    return localDate.toISOString().slice(0, 19).replace("T", " ");
   };
 
   const [error, setError] = useState(null);
@@ -358,7 +365,7 @@ function TOForm() {
               <label className="field-label">Check-in Time:</label>
               <input
                 type="text"
-                value={checkInTime ? formatDate(checkInTime) : "Not available"}
+                value={checkInTime ? formatDateTime(checkInTime) : "Not available"}
                 className="form-input"
                 readOnly
                 placeholder="Auto-filled from check-in data"
