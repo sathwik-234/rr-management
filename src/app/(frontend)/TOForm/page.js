@@ -359,7 +359,7 @@ function TOForm() {
               <label className="field-label">Check-in Time:</label>
               <input
                 type="text"
-                value={checkInTime ? formatDate(checkInTime) : "Not available"}
+                value={checkInTime ? checkInTime : "Not available"}
                 className="form-input"
                 readOnly
                 placeholder="Auto-filled from check-in data"
