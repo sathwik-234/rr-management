@@ -9,6 +9,7 @@ import { FaPersonWalkingLuggage } from "react-icons/fa6";
 import { MdLocalHotel } from "react-icons/md";
 import { IoFastFoodSharp } from "react-icons/io5";
 import { FaBusinessTime } from "react-icons/fa";
+import { IoPersonAdd } from "react-icons/io5";
 
 
 
@@ -77,6 +78,22 @@ const Page = () => {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <FaBusinessTime style={{ marginRight: '8px' }} /> {/* Icon */}
                   <span>TO Form</span> {/* Text */}
+                </div>
+              )}
+            </button>
+            <button
+              onClick={() => nav.push("/NewId")}
+              disabled={fetching}
+              className="home-button add-crew"
+            >
+              {fetching ? (
+                <Box sx={{ display: 'flex' }}>
+                  <CircularProgress size="20px" sx={{ color: '#f2b157' }} />
+                </Box>
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <IoPersonAdd style={{ marginRight: '8px' }} /> {/* Icon */}
+                  <span>Add Crew</span> {/* Text */}
                 </div>
               )}
             </button>

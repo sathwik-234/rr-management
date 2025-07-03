@@ -98,10 +98,6 @@ function CheckOut() {
       return;
     }
     
-    if (cmsId.length !== 8) {
-      setCmsIdError('CMS ID must be exactly 8 characters');
-      return;
-    }
 
     setFetchButtonLoading(true);
     setError(null);
@@ -156,7 +152,7 @@ function CheckOut() {
 
   // Fetch check-in data when CMS ID and crew details are available
   useEffect(() => {
-    if (formData.cmsid && formData.cmsid.length === 8 && formData.name && crewDetailsLoaded) {
+    if (formData.cmsid && formData.name && crewDetailsLoaded) {
       const fetchCheckInData = async () => {
         setLoading(true);
         try {
@@ -225,10 +221,7 @@ function CheckOut() {
     e.preventDefault();
     
     // Validate CMS ID length
-    if (formData.cmsid.length !== 8) {
-      alert("CMS ID must be exactly 8 characters long.");
-      return;
-    }
+    
 
     // Validate that all required details are loaded
     if (!formData.name || !formData.design || !formData.hq) {
@@ -474,7 +467,7 @@ function CheckOut() {
             <button 
               className="submitButton" 
               type="submit"
-              disabled={buttonDisabled || !crewDetailsLoaded || !formData.allottedBed || formData.cmsid.length !== 8}
+              disabled={buttonDisabled || !crewDetailsLoaded || !formData.allottedBed}
             >
               {buttonDisabled ? (
                 <Box sx={{ display: 'flex' }}>

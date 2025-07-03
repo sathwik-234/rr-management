@@ -1,0 +1,263 @@
+/* Loading Spinner Centered */
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  font-size: 1.2rem;
+  color: #54473F;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Error Message */
+.error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  color: #d32f2f;
+  background-color: #ffebee;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #d32f2f;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Main Container */
+.hifi {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 0 8px 10px rgba(84, 71, 63, 0.2);
+  background-color: #fff;
+  border-radius: 10px;
+  margin-left: 200px;
+  margin-right: 200px;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Form Title */
+.checkin-form-name {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #54473F;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  text-decoration-color: #54473F;
+  text-decoration-thickness: 2px;
+}
+
+/* Form Block Container */
+.form-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Form */
+.check-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  background-color: #ccd0be;
+  padding: 30px 0 30px 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Right Block (Form Fields Container) */
+.right-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Each Form Field */
+.form-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 80%;
+}
+
+/* Labels */
+.label {
+  font-weight: bold;
+  font-size: 1rem;
+  width: 30%;
+  color: #54473F;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Input Text (including select dropdowns) */
+.input-text {
+  width: 65%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Input Focus Effect */
+.input-text:focus {
+  outline: none;
+  border-color: #f2b157;
+  box-shadow: 0 0 2px #f2b157;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Select Dropdown Specific Styling */
+.input-text select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+/* Button Container */
+.button-div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Submit Button */
+.submitButton {
+  width: 150px;
+  height: 50px;
+  background-color: #54473F;
+  color: #E9EED9;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+/* Submit Button Hover */
+.submitButton:hover:not(:disabled) {
+  background-color: #403128;
+}
+
+/* Submit Button Disabled */
+.submitButton:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+/* Message Container */
+.message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  max-width: 80%;
+}
+
+/* Success Message */
+.message.success {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #4caf50;
+}
+
+/* Error Message */
+.message.error {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #f44336;
+}
+
+/* Special styling for bead class (if needed) */
+.bead {
+  /* Add any specific styling for the bead class if required */
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+  .hifi {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .check-form {
+    width: 90%;
+  }
+
+  .form-field {
+    flex-direction: column;
+    width: 90%;
+    align-items: flex-start;
+  }
+
+  .label {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .input-text {
+    width: 100%;
+  }
+
+  .checkin-form-name {
+    font-size: 1.5rem;
+  }
+
+  .right-block {
+    width: 100%;
+  }
+
+  .button-div {
+    width: 100%;
+  }
+
+  .message {
+    max-width: 95%;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .hifi {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+  }
+
+  .check-form {
+    width: 95%;
+    padding: 20px 0;
+  }
+
+  .form-field {
+    width: 95%;
+  }
+
+  .submitButton {
+    width: 120px;
+    height: 45px;
+    font-size: 16px;
+  }
+}

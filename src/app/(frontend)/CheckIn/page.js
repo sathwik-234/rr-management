@@ -88,11 +88,6 @@ function CheckIn() {
             return;
         }
         
-        if (cmsId.length !== 8) {
-            setCmsIdError('CMS ID must be exactly 8 characters');
-            return;
-        }
-        
         setFetchButtonLoading(true);
         setCmsIdError('');
         
@@ -132,7 +127,7 @@ function CheckIn() {
 
     useEffect(() => {
         const fetchData = async () => {
-            if (!formData.cmsid || formData.cmsid.length !== 8) return;
+            if (!formData.cmsid) return;
             
             try {
                 const response = await fetch(`api/CheckInSubmit/${formData.cmsid}`);
@@ -176,11 +171,6 @@ function CheckIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // Validate CMS ID
-        if (formData.cmsid.length !== 8) {
-            alert('CMS ID must be exactly 8 characters');
-            return;
-        }
         
         // Validate user details are loaded
         if (!userDetailsLoaded) {
@@ -405,7 +395,7 @@ function CheckIn() {
                         <button 
                             className="submitButton" 
                             type="submit"
-                            disabled={buttonDisabled || !userDetailsLoaded || formData.cmsid.length !== 8}
+                            disabled={buttonDisabled || !userDetailsLoaded }
                         >
                             {buttonDisabled ? (
                                 <Box sx={{ display: 'flex' }}>
