@@ -11,6 +11,7 @@ const Page = () => {
   const [currentDateTime, setCurrentDateTime] = useState("");
   const [userDetailsLoaded, setUserDetailsLoaded] = useState(false);
   const [cmsIdError, setCmsIdError] = useState('');
+  const [duplicateError, setDuplicateError] = useState(''); // New state for duplicate error
   const [formData, setFormData] = useState({
     crewname: "",
     cms_id: "",
@@ -24,8 +25,34 @@ const Page = () => {
 
   const printfn = useReactToPrint({ contentRef});
 
+  // Function to check for duplicate tokens
+  const checkDuplicateToken = async (cmsId, date, meal) => {
+    try {
+      const response = await fetch('/api/checkDuplicate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cms_id: cmsId,
+          date: date.slice(0, 10), // Only date part, not time
+          meal: meal
+        }),
+      });
+      
+      const result = await response.json();
+      return result.exists; // Assuming the API returns { exists: true/false }
+    } catch (error) {
+      console.error('Error checking duplicate:', error);
+      return false; // If there's an error, allow submission
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Clear previous duplicate error
+    setDuplicateError('');
     
     // Validate CMS ID
     if (formData.cms_id.length !== 8) {
@@ -36,6 +63,16 @@ const Page = () => {
     // Validate user details are loaded
     if (!userDetailsLoaded) {
       alert('Please enter a valid CMS ID to load user details');
+      return;
+    }
+    
+    // Check for duplicate token
+    setLoading(true);
+    const isDuplicate = await checkDuplicateToken(formData.cms_id, formData.date, formData.meal);
+    
+    if (isDuplicate) {
+      setDuplicateError(`A ${formData.meal} token for ${formData.cms_id} already exists for ${formData.date.slice(0, 10)}`);
+      setLoading(false);
       return;
     }
     
@@ -62,7 +99,9 @@ const Page = () => {
     } catch (err) {
       console.error("Error submitting form data:", err);
       alert('An unexpected error occurred.');
-    } 
+    } finally {
+      setLoading(false);
+    }
   };
 
   const fetchUserDetails = async (cmsId = formData.cms_id) => {
@@ -109,6 +148,11 @@ const Page = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    // Clear duplicate error when form fields change
+    if (duplicateError && (name === 'cms_id' || name === 'date' || name === 'meal')) {
+      setDuplicateError('');
+    }
     
     if (name === 'cms_id') {
       const uppercaseValue = value.toUpperCase();
@@ -208,7 +252,6 @@ const Page = () => {
                 </button>
               </div>
               {cmsIdError && <span className="error-message" style={{color: 'red', fontSize: '12px', display: 'block'}}>{cmsIdError}</span>}
-              {/* {userDetailsLoaded && <span style={{color: 'green', fontSize: '12px', display: 'block'}}>User details loaded successfully!</span>} */}
             </div>
 
             <div className="slip-form-field">
@@ -249,13 +292,22 @@ const Page = () => {
                 <option value="Parcel">Parcel</option>
               </select>
             </div>
+
+            {/* Display duplicate error message */}
+            {duplicateError && (
+              <div className="slip-form-field">
+                <span className="error-message" style={{color: 'red', fontSize: '14px', display: 'block', textAlign: 'center', fontWeight: 'bold'}}>
+                  {duplicateError}
+                </span>
+              </div>
+            )}
           </form>
         </div>
 
         <button
           onClick={handleSubmit}
           className="slips-button"
-          disabled={!userDetailsLoaded || formData.cms_id.length !== 8}
+          disabled={!userDetailsLoaded || formData.cms_id.length !== 8 || loading}
         >
           {loading ? (
             <Box sx={{ display: 'flex' }}>

@@ -6,7 +6,7 @@ export async function GET(request, { params }) {
     const { cmsid } = await params;
 
     // Validate CMS ID format
-    if (!cmsid || cmsid.length !== 8) {
+    if (!cmsid) {
       return NextResponse.json(
         { error: 'Invalid CMS ID format' },
         { status: 400 }

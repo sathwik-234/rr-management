@@ -32,9 +32,9 @@ async function generateUniqueToken() {
 export const POST = async (req) => {
   try {
     const formData = await req.json();
-    const { meal, cms_id } = formData;
+    const { meal, cms_id, date } = formData;
 
-    if (!meal || !cms_id) {
+    if (!meal || !cms_id || !date) {
       return NextResponse.json(
         { message: "Missing required fields" },
         { status: 400 }
@@ -50,6 +50,7 @@ export const POST = async (req) => {
         cms_id: cms_id,
         meal_type: meal,
         token_no: tokenNumber,
+        date: date,
       },
     ]);
 

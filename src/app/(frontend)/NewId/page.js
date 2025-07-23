@@ -9,6 +9,9 @@ const Page = () => {
   const [fetching, setFetching] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [userDetailsLoaded, setUserDetailsLoaded] = useState(false);
+  const [cmsIdError, setCmsIdError] = useState('');
   
   // Form data state
   const [formData, setFormData] = useState({
@@ -29,6 +32,7 @@ const Page = () => {
     { value: 'GTMR', label: 'GTMR' },
     { value: 'PTMR', label: 'PTMR' },
     { value: 'METMR', label: 'METMR' },
+    {value:'CLI',label:'CLI'},
   ];
 
   const headquartersOptions = [
@@ -44,40 +48,13 @@ const Page = () => {
 
   // Handle input changes
   const handleChange = (e) => {
-        const { name, value } = e.target;
-        
-        if (name === 'cmsid') {
-            const uppercaseValue = value.toUpperCase();
-            setFormData((prevData) => ({ ...prevData, [name]: uppercaseValue }));
-            
-            // Clear previous user details when CMS ID changes
-            if (uppercaseValue !== formData.cmsid) {
-                setFormData((prevData) => ({
-                    ...prevData,
-                    cmsid: uppercaseValue,
-                    name: '',
-                    design: '',
-                    hq: ''
-                }));
-                setUserDetailsLoaded(false);
-                setCmsIdError('');
-            }
-            
-            // Validate CMS ID length
-            if (uppercaseValue.length > 8) {
-                setCmsIdError('CMS ID must be exactly 8 characters');
-            } else {
-                setCmsIdError('');
-            }
-            return;
-        }
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
-        setFormData((prevData) => ({ ...prevData, [name]: value }));
-    };
-
-  // Function to check if CMS ID exists in database
-  const checkCmsIdExists = async (cmsId) => {
-    if (cmsId.length === 8) {
+  // Function to check if CMS ID exists and fetch existing data
+  const checkAndFetchCrewData = async (cmsId) => {
+    if (cmsId.trim()) {
       try {
         setFetching(true);
         const response = await fetch(`/api/crew/check/${cmsId}`);
@@ -85,38 +62,75 @@ const Page = () => {
         if (response.ok) {
           const data = await response.json();
           if (data.exists) {
-            setError(true);
-            setSubmitMessage('CMS ID already exists in database!');
-            return true;
+            // If crew exists, fetch their details for editing
+            const detailsResponse = await fetch(`/api/crew/${cmsId}`);
+            if (detailsResponse.ok) {
+              const crewDetails = await detailsResponse.json();
+              console.log('Crew details:', crewDetails);
+              setFormData({
+                cmsid: cmsId,
+                name: crewDetails.name || '',
+                design: crewDetails.design || '',
+                hq: crewDetails.hq || ''
+              });
+              setIsEditMode(true);
+              setUserDetailsLoaded(true);
+              setSubmitMessage('Crew found! You can now update their details.');
+              setError(false);
+            }
           } else {
+            // New crew member
+            setIsEditMode(false);
+            setUserDetailsLoaded(false);
+            setSubmitMessage('New crew member - fill in the details below.');
             setError(false);
-            setSubmitMessage('');
-            return false;
           }
         }
       } catch (err) {
         console.error('Error checking CMS ID:', err);
+        setError(true);
+        setSubmitMessage('Error checking CMS ID. Please try again.');
       } finally {
         setFetching(false);
       }
+    } else {
+      // Reset form if CMS ID is empty
+      setIsEditMode(false);
+      setUserDetailsLoaded(false);
+      setSubmitMessage('');
+      setError(false);
     }
-    return false;
   };
 
-  // Handle CMS ID input change with existence check
+  // Handle CMS ID input change (without auto-search)
   const handleCmsIdChange = (e) => {
     const { value } = e.target;
+    const uppercaseValue = value.toUpperCase();
+    
     setFormData(prev => ({
       ...prev,
-      cmsid: value
+      cmsid: uppercaseValue
     }));
     
-    // Check if CMS ID exists when it reaches 8 characters
-    if (value.length <= 8) {
-      checkCmsIdExists(value);
-    } else {
-      setError(false);
+    // If CMS ID changes, reset other fields and states
+    if (uppercaseValue !== formData.cmsid) {
+      setFormData(prev => ({
+        cmsid: uppercaseValue,
+        name: '',
+        design: '',
+        hq: ''
+      }));
+      setUserDetailsLoaded(false);
+      setIsEditMode(false);
       setSubmitMessage('');
+      setError(false);
+    }
+  };
+
+  // Handle search button click
+  const handleSearchClick = () => {
+    if (formData.cmsid.trim()) {
+      checkAndFetchCrewData(formData.cmsid.trim());
     }
   };
 
@@ -133,14 +147,11 @@ const Page = () => {
         throw new Error('Please fill in all required fields');
       }
 
-      // Check if CMS ID already exists before submitting
-      const existsCheck = await checkCmsIdExists(formData.cmsid);
-      if (existsCheck) {
-        throw new Error('CMS ID already exists in database!');
-      }
+      const url = isEditMode ? `/api/crew/${formData.cmsid}` : '/api/crew';
+      const method = isEditMode ? 'PUT' : 'POST';
 
-      const response = await fetch('/api/crew', {
-        method: 'POST',
+      const response = await fetch(url, {
+        method: method,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -149,19 +160,23 @@ const Page = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to submit crew data');
+        throw new Error(errorData.message || `Failed to ${isEditMode ? 'update' : 'add'} crew data`);
       }
 
       const result = await response.json();
-      setSubmitMessage(result.message || 'Crew data submitted successfully!');
+      setSubmitMessage(result.message || `Crew data ${isEditMode ? 'updated' : 'added'} successfully!`);
+      setError(false);
 
-      // Reset form after successful submission
-      setFormData({
-        cmsid: '',
-        name: '',
-        design: '',
-        hq: ''
-      });
+      // Don't reset form after successful update, only after new addition
+      if (!isEditMode) {
+        setFormData({
+          cmsid: '',
+          name: '',
+          design: '',
+          hq: ''
+        });
+        setUserDetailsLoaded(false);
+      }
 
     } catch (err) {
       console.error('Error submitting form:', err);
@@ -170,6 +185,20 @@ const Page = () => {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  // Reset form function
+  const resetForm = () => {
+    setFormData({
+      cmsid: '',
+      name: '',
+      design: '',
+      hq: ''
+    });
+    setIsEditMode(false);
+    setUserDetailsLoaded(false);
+    setSubmitMessage('');
+    setError(false);
   };
 
   useEffect(() => {
@@ -185,23 +214,33 @@ const Page = () => {
 
   return (
     <div className='hifi'>
-      <h1 className="checkin-form-name">Add Crew Form</h1>
+      <h1 className="checkin-form-name">
+        {isEditMode ? 'Edit Crew Details' : 'Add Crew Form'}
+      </h1>
       <div className="form-block">
         <form onSubmit={handleSubmit} className='check-form'>
           <div className="right-block">
             <div className="form-field">
               <label htmlFor="cmsid" className="label">CMS Id:</label>
-                  <input 
-                    type="text" 
-                    name="cmsid" 
-                    value={formData.cmsid} 
-                    onChange={handleCmsIdChange} 
-                    className="input-text"
-                    placeholder="Enter 8-character CMS ID"
-                    maxLength="8"
-                    
-                    required
-                  />
+              <div className="input-with-button">
+                <input 
+                  type="text" 
+                  name="cmsid" 
+                  value={formData.cmsid} 
+                  onChange={handleCmsIdChange} 
+                  className="input-text"
+                  placeholder="Enter CMS ID"
+                  required
+                />
+                <button 
+                  type="button" 
+                  onClick={handleSearchClick}
+                  className="search-button"
+                  disabled={!formData.cmsid.trim() || fetching}
+                >
+                  {fetching ? 'Searching...' : 'Search'}
+                </button>
+              </div>
             </div>
 
             <div className="form-field">
@@ -258,8 +297,18 @@ const Page = () => {
               type="submit"
               disabled={submitting}
             >
-              {submitting ? 'Submitting...' : 'Submit'}
+              {submitting ? 'Submitting...' : (isEditMode ? 'Update Crew' : 'Add Crew')}
             </button>
+            {(isEditMode || formData.cmsid) && (
+              <button 
+                type="button" 
+                className="resetButton" 
+                onClick={resetForm}
+                style={{ marginLeft: '10px' }}
+              >
+                Reset Form
+              </button>
+            )}
           </div>
         </form>
 
